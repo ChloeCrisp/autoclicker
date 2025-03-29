@@ -32,13 +32,12 @@ def stop_clicker():
     running = False
     status_label.config(text="Status: Stopped", fg="red")
 
-def update_interval():
+def update_interval(event=None):  # Add `event` parameter to handle key binding
     global click_interval
     try:
         new_interval = float(interval_entry.get())
         if new_interval > 0:
             click_interval = new_interval
-            messagebox.showinfo("Success", f"Click interval updated to {click_interval} seconds.")
         else:
             messagebox.showerror("Error", "Interval must be greater than 0.")
     except ValueError:
@@ -68,10 +67,13 @@ root.geometry("600x400")
 root.attributes("-topmost", True)
 
 # Interval input
-tk.Label(root, text="Click Interval (seconds):").pack(pady=5)
+tk.Label(root, text="Click Interval (seconds) and Press Enter To Save:").pack(pady=5)
 interval_entry = tk.Entry(root)
 interval_entry.insert(0, str(click_interval))
 interval_entry.pack(pady=5)
+
+# Bind the Enter key to update the interval
+interval_entry.bind("<Return>", update_interval)
 
 # Click button selection
 tk.Label(root, text="Click Button:").pack(pady=5)
@@ -85,9 +87,6 @@ start_button.pack(pady=5)
 
 stop_button = tk.Button(root, text="Stop", command=stop_clicker, bg="red", fg="white")
 stop_button.pack(pady=5)
-
-update_button = tk.Button(root, text="Update Interval", command=update_interval)
-update_button.pack(pady=5)
 
 # Status label
 status_label = tk.Label(root, text="Status: Stopped", fg="red")
