@@ -64,6 +64,9 @@ root.title("Autoclicker")
 # Set the size of the window (e.g., 600x400 pixels)
 root.geometry("600x400")
 
+# Always on top
+root.attributes("-topmost", True)
+
 # Interval input
 tk.Label(root, text="Click Interval (seconds):").pack(pady=5)
 interval_entry = tk.Entry(root)
