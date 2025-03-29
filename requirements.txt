@@ -1,0 +1,6 @@
+pyautogui
+time
+threading
+tkinter
+messagebox
+keyboard
