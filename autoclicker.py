@@ -44,7 +44,6 @@ def update_interval(event=None):  # Add `event` parameter to handle key binding
         if new_interval > 0:
             click_interval = new_interval
             current_interval_label.config(text=f"Current Interval: {click_interval} seconds")
-            messagebox.showinfo("Success", f"Click interval updated to {click_interval} seconds.")
         else:
             messagebox.showerror("Error", "Interval must be greater than 0.")
     except ValueError:
