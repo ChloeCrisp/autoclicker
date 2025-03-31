@@ -49,17 +49,12 @@ def update_interval(event=None):  # Add `event` parameter to handle key binding
     except ValueError:
         messagebox.showerror("Error", "Please enter a valid number.")
 
-def update_click_button(selected_button):
-    global click_button
-    click_button = selected_button
-    messagebox.showinfo("Success", f"Click button updated to '{click_button}'.")
-
-def update_click_key():
+def update_click_key(event=None): # Add `event` parameter to handle key binding
     global click_key
     new_key = key_entry.get()
     if new_key:
         click_key = new_key
-        messagebox.showinfo("Success", f"Key updated to '{click_key}'.")
+        current_click_key_label.config(text=f"Current Key: {click_key}")
     else:
         messagebox.showerror("Error", "Please enter a valid key.")
 
@@ -105,21 +100,18 @@ interval_entry.bind("<Return>", update_interval)
 current_interval_label = tk.Label(root, text=f"Current Interval: {click_interval} seconds", bg="#F8E8E8", fg="#4A4A4A", font=("Arial", 12))
 current_interval_label.pack(pady=5)
 
-# Click button selection
-tk.Label(root, text="Click Button:", bg="#F8E8E8", fg="#4A4A4A", font=("Arial", 12)).pack(pady=5)
-click_button_var = tk.StringVar(value=click_button)
-click_button_menu = tk.OptionMenu(root, click_button_var, "left", "right", command=update_click_button)
-click_button_menu.config(bg="#D5E8D4", fg="#4A4A4A", font=("Arial", 12))
-click_button_menu.pack(pady=5)
-
 # Key input
-tk.Label(root, text="Key to Press:", bg="#F8E8E8", fg="#4A4A4A", font=("Arial", 12)).pack(pady=5)
+tk.Label(root, text="Enter Key and Press Enter To Save:", bg="#F8E8E8", fg="#4A4A4A", font=("Arial", 12)).pack(pady=5)
 key_entry = tk.Entry(root, font=("Arial", 12), bg="#FFF8DC", fg="#4A4A4A")
-key_entry.insert(0, click_key)
+key_entry.insert(0, str(click_key))
 key_entry.pack(pady=5)
 
-update_key_button = tk.Button(root, text="Update Key", command=update_click_key, bg="#D5E8D4", fg="#4A4A4A", font=("Arial", 12))
-update_key_button.pack(pady=5)
+# Bind the Enter key to update the key
+key_entry.bind("<Return>", update_click_key)
+
+# Add a label to display the current click button
+current_click_key_label = tk.Label(root, text=f"Current Key: {click_button}", bg="#F8E8E8", fg="#4A4A4A", font=("Arial", 12))
+current_click_key_label.pack(pady=5)
 
 # Mode toggle
 mode_toggle_button = tk.Button(root, text="Toggle Mode", command=toggle_mode, bg="#AEDFF7", fg="#4A4A4A", font=("Arial", 12))
