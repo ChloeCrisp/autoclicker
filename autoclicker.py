@@ -7,7 +7,7 @@ import keyboard  # For hotkey support
 
 # Settings
 click_interval = 1  # Default time between clicks in seconds
-click_button = "left"  # Default button to click
+click_button = "Left"  # Default button to click
 click_key = "a"  # Default key to press
 hotkey_start = "f7"
 hotkey_stop = "f8"
