@@ -79,7 +79,7 @@ root = tk.Tk()
 root.title("Autoclicker")
 
 # Set the size of the window
-root.geometry("700x700")
+root.geometry("400x400")
 
 # Set pastel background color
 root.configure(bg="#F8E8E8")  # Light pastel pink
@@ -88,7 +88,7 @@ root.configure(bg="#F8E8E8")  # Light pastel pink
 root.attributes("-topmost", True)
 
 # Interval input
-tk.Label(root, text="Click Interval (seconds) and Press Enter To Save:", bg="#F8E8E8", fg="#4A4A4A", font=("Arial", 12)).pack(pady=5)
+tk.Label(root, text="Enter A Interval (seconds) ~ Enter To Save:", bg="#F8E8E8", fg="#4A4A4A", font=("Arial", 12)).pack(pady=5)
 interval_entry = tk.Entry(root, font=("Arial", 12), bg="#FFF8DC", fg="#4A4A4A")
 interval_entry.insert(0, str(click_interval))
 interval_entry.pack(pady=5)
@@ -101,7 +101,7 @@ current_interval_label = tk.Label(root, text=f"Current Interval: {click_interval
 current_interval_label.pack(pady=5)
 
 # Key input
-tk.Label(root, text="Enter Key and Press Enter To Save:", bg="#F8E8E8", fg="#4A4A4A", font=("Arial", 12)).pack(pady=5)
+tk.Label(root, text="Enter A Key ~ Press Enter To Save:", bg="#F8E8E8", fg="#4A4A4A", font=("Arial", 12)).pack(pady=5)
 key_entry = tk.Entry(root, font=("Arial", 12), bg="#FFF8DC", fg="#4A4A4A")
 key_entry.insert(0, str(click_key))
 key_entry.pack(pady=5)
@@ -122,10 +122,10 @@ mode_label = tk.Label(root, text="Mode: Mouse Click", bg="#F8E8E8", fg="#4A4A4A"
 mode_label.pack(pady=5)
 
 # Buttons
-start_button = tk.Button(root, text="Start", command=start_clicker, bg="#AEDFF7", fg="#4A4A4A", font=("Arial", 12))
+start_button = tk.Button(root, text="Start / F7", command=start_clicker, bg="#AEDFF7", fg="#4A4A4A", font=("Arial", 12))
 start_button.pack(pady=5)
 
-stop_button = tk.Button(root, text="Stop", command=stop_clicker, bg="#F7A8A8", fg="#4A4A4A", font=("Arial", 12))
+stop_button = tk.Button(root, text="Stop / F8", command=stop_clicker, bg="#F7A8A8", fg="#4A4A4A", font=("Arial", 12))
 stop_button.pack(pady=5)
 
 # Status label
