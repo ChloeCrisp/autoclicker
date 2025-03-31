@@ -49,6 +49,11 @@ def update_interval(event=None):  # Add `event` parameter to handle key binding
     except ValueError:
         messagebox.showerror("Error", "Please enter a valid number.")
 
+def update_click_button(*args):
+    global click_button
+    click_button = button_var.get()  # Get value from dropdown
+    current_button_label.config(text=f"Current Mouse Button: {click_button}")
+
 def update_click_key(event=None): # Add `event` parameter to handle key binding
     global click_key
     new_key = key_entry.get()
@@ -79,7 +84,7 @@ root = tk.Tk()
 root.title("Autoclicker")
 
 # Set the size of the window
-root.geometry("400x400")
+root.geometry("400x500")
 
 # Set pastel background color
 root.configure(bg="#F8E8E8")  # Light pastel pink
@@ -99,6 +104,23 @@ interval_entry.bind("<Return>", update_interval)
 # Add a label to display the current interval
 current_interval_label = tk.Label(root, text=f"Current Interval: {click_interval} seconds", bg="#F8E8E8", fg="#4A4A4A", font=("Arial", 12))
 current_interval_label.pack(pady=5)
+
+# Button selection using a dropdown
+tk.Label(root, text="Select Mouse Button:", bg="#F8E8E8", fg="#4A4A4A", font=("Arial", 12)).pack(pady=5)
+
+button_var = tk.StringVar(value=click_button)  # Stores the selected button
+button_menu = tk.OptionMenu(root, button_var, "left", "right", command=update_click_button)
+button_menu.config(font=("Arial", 12), bg="#FFF8DC", fg="#4A4A4A")
+button_menu.pack(pady=5)
+
+def update_click_button(*args):
+    global click_button
+    click_button = button_var.get()
+    current_button_label.config(text=f"Current Mouse Button: {click_button}")
+
+# Add a label to display the current mouse button
+current_button_label = tk.Label(root, text=f"Current Mouse Button: {click_button}", bg="#F8E8E8", fg="#4A4A4A", font=("Arial", 12))
+current_button_label.pack(pady=5)
 
 # Key input
 tk.Label(root, text="Enter A Key ~ Press Enter To Save:", bg="#F8E8E8", fg="#4A4A4A", font=("Arial", 12)).pack(pady=5)
