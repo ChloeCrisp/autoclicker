@@ -112,7 +112,7 @@ current_interval_label.pack(pady=5)
 tk.Label(root, text="Select Mouse Button:", bg="#F8E8E8", fg="#4A4A4A", font=("Arial", 12)).pack(pady=5)
 
 button_var = tk.StringVar(value=click_button)  # Stores the selected button
-button_menu = tk.OptionMenu(root, button_var, "left", "right", command=update_click_button)
+button_menu = tk.OptionMenu(root, button_var, "Left", "Right", command=update_click_button)
 button_menu.config(font=("Arial", 12), bg="#FFF8DC", fg="#4A4A4A")
 button_menu.pack(pady=5)
 
