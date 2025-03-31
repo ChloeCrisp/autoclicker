@@ -54,22 +54,25 @@ def update_click_button(*args):
     click_button = button_var.get()  # Get value from dropdown
     current_button_label.config(text=f"Current Mouse Button: {click_button}")
 
-def update_click_key(event=None): # Add `event` parameter to handle key binding
+def update_click_key(event=None):  # Add `event` parameter to handle key binding
     global click_key
     new_key = key_entry.get()
-    if new_key:
+
+    if len(new_key) == 1:  # Ensure only a single character is allowed
         click_key = new_key
         current_click_key_label.config(text=f"Current Key: {click_key}")
     else:
-        messagebox.showerror("Error", "Please enter a valid key.")
+        messagebox.showerror("Error", "Please enter a single character key.")
+        key_entry.delete(0, tk.END)  # Clear the entry field to force correct input
+
 
 def toggle_mode():
     global use_key_mode
     use_key_mode = not use_key_mode
     if use_key_mode:
-        mode_label.config(text="Mode: Key Press", fg="#4CAF50")  # Green
+        mode_label.config(text="Mode: Key Press", fg="#4CAF50")
     else:
-        mode_label.config(text="Mode: Mouse Click", fg="#4A4A4A")  # Gray
+        mode_label.config(text="Mode: Mouse Click", fg="#4CAF50")
 
 def hotkey_listener():
     while True:
@@ -84,7 +87,7 @@ root = tk.Tk()
 root.title("Autoclicker")
 
 # Set the size of the window
-root.geometry("400x500")
+root.geometry("400x550")
 
 # Set pastel background color
 root.configure(bg="#F8E8E8")  # Light pastel pink
